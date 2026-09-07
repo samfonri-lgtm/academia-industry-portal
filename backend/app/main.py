@@ -56,9 +56,9 @@ EXTRA_ORIGINS = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=DEFAULT_ORIGINS + EXTRA_ORIGINS,
-    # Vercel preview deployments of the frontend
-    allow_origin_regex=r"https://academia-industry-portal(-[a-z0-9-]+)?\.vercel\.app",
+    allow_origins=DEFAULT_ORIGINS + EXTRA_ORIGINS + [
+        "https://frontend-coral-ten-37.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
