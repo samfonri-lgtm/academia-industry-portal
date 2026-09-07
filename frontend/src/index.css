@@ -1,0 +1,282 @@
+@import "tailwindcss";
+
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: #f8fafc;
+  background: #020617;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #020617;
+}
+
+/* =========================================
+   PAGE ENTER
+========================================= */
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-enter {
+  animation: pageEnter 0.35s ease-out both;
+}
+
+/* =========================================
+   FADE IN
+========================================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.45s ease-out forwards;
+}
+
+/* =========================================
+   SLIDE UP
+========================================= */
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  opacity: 0;
+  animation: slideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* =========================================
+   SLIDE LEFT
+========================================= */
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-left {
+  opacity: 0;
+  animation: slideLeft 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* =========================================
+   SCALE IN
+========================================= */
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  opacity: 0;
+  animation: scaleIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* =========================================
+   STAGGER
+========================================= */
+
+.animate-stagger-container {
+  --stagger: 0.08s;
+}
+
+.animate-stagger-item {
+  opacity: 0;
+  animation: slideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-stagger-item:nth-child(1) {
+  animation-delay: calc(var(--stagger) * 1);
+}
+
+.animate-stagger-item:nth-child(2) {
+  animation-delay: calc(var(--stagger) * 2);
+}
+
+.animate-stagger-item:nth-child(3) {
+  animation-delay: calc(var(--stagger) * 3);
+}
+
+.animate-stagger-item:nth-child(4) {
+  animation-delay: calc(var(--stagger) * 4);
+}
+
+.animate-stagger-item:nth-child(5) {
+  animation-delay: calc(var(--stagger) * 5);
+}
+
+.animate-stagger-item:nth-child(6) {
+  animation-delay: calc(var(--stagger) * 6);
+}
+
+.animate-stagger-item:nth-child(7) {
+  animation-delay: calc(var(--stagger) * 7);
+}
+
+.animate-stagger-item:nth-child(8) {
+  animation-delay: calc(var(--stagger) * 8);
+}
+
+/* =========================================
+   CARD HOVER
+========================================= */
+
+.animate-hover-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.animate-hover-card:hover {
+  transform: translateY(-4px);
+}
+
+/* =========================================
+   BUTTON ANIMATION
+========================================= */
+
+.animate-button {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.animate-button:hover:not(:disabled) {
+  transform: scale(1.02);
+}
+
+.animate-button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.animate-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* =========================================
+   PROGRESS BAR
+========================================= */
+
+@keyframes progressFill {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: var(--progress-width);
+  }
+}
+
+.animate-progress-fill {
+  width: 0;
+  animation: progressFill 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s
+    forwards;
+}
+
+/* =========================================
+   SOFT GLOW
+========================================= */
+
+@keyframes softPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-soft-pulse {
+  animation: softPulse 2.5s ease-in-out infinite;
+}
+
+/* =========================================
+   FLOAT
+========================================= */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
