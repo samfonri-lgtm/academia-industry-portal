@@ -1,7 +1,11 @@
+// Emergent deployments expose the backend at <REACT_APP_BACKEND_URL>/api;
+// Vercel/local builds use VITE_API_URL directly.
 const API_BASE_URL = (
-  import.meta.env.VITE_API_URL ||
-  import.meta.env.VITE_API_BASE_URL ||
-  "http://127.0.0.1:8000"
+  import.meta.env.REACT_APP_BACKEND_URL
+    ? `${import.meta.env.REACT_APP_BACKEND_URL}/api`
+    : import.meta.env.VITE_API_URL ||
+      import.meta.env.VITE_API_BASE_URL ||
+      "http://127.0.0.1:8000"
 ).replace(/\/+$/, "");
 
 const SESSION_KEY = "academia_session";
