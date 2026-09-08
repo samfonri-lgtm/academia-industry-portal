@@ -54,15 +54,34 @@ EXTRA_ORIGINS = [
     if origin.strip()
 ]
 
+ALLOW_ALL_ORIGINS = "*" in EXTRA_ORIGINS
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=DEFAULT_ORIGINS + EXTRA_ORIGINS + [
-        "https://frontend-coral-ten-37.vercel.app",
-    ],
-    allow_credentials=True,
+    allow_origins=["*"] if ALLOW_ALL_ORIGINS else DEFAULT_ORIGINS + EXTRA_ORIGINS,
+    # Vercel preview deployments of the frontend
+    allow_origin_regex=None if ALLOW_ALL_ORIGINS else r"https://academia-industry-portal(-[a-z0-9-]+)?\.vercel\.app",
+    allow_credentials=not ALLOW_ALL_ORIGINS,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# =========================================================
+# OPTIONAL /api PREFIX
+# =========================================================
+# Some hosts (e.g. Emergent) route the backend under /api. Routes are
+# defined without the prefix (Vercel), so strip it when present.
+
+@app.middleware("http")
+async def strip_api_prefix(request: Request, call_next):
+    path = request.scope.get("path", "")
+
+    if path == "/api" or path.startswith("/api/"):
+        request.scope["path"] = path[4:] or "/"
+        request.scope["raw_path"] = request.scope["path"].encode()
+
+    return await call_next(request)
 
 
 # =========================================================

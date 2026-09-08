@@ -130,6 +130,7 @@ def get_opportunities():
             JOIN companies c
                 ON c.id = o.company_id
             ORDER BY o.created_at DESC
+            LIMIT 200
             """
         )
 
